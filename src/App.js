@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import { NextUIProvider } from "@nextui-org/react";
+import { Admin } from "./pages/Admin";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NextUIProvider>
+      <Provider store={store}>
+        <Router>
+          <div className="w-screen h-screen">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </div>
+        </Router>
+      </Provider>
+    </NextUIProvider>
   );
 }
 
